@@ -43,6 +43,8 @@ val derbyVersion = "10.15.2.0"
 val lettuceVersion = "6.2.0.RELEASE"
 val logbackVersion = "1.4.1"
 
+val jvm = listOf("-Xss256k", "-Xmx96m", "-XX:MaxMetaspaceSize=64m")
+
 val fatJar = false
 
 val requireModules = listOf(
@@ -184,6 +186,9 @@ tasks.register<PackageTask>("packageForWindows") {
 
     platform = Platform.windows
     isCreateZipball = false
+
+    vmArgs = jvm
+
     winConfig(closureOf<WindowsConfig> {
         icoFile = getIconFile("RedisFront.ico")
         headerType = HeaderType.gui
@@ -212,6 +217,8 @@ tasks.register<PackageTask>("packageForLinux") {
     organizationName = organization
     organizationUrl = supportUrl
 
+    vmArgs = jvm
+
     linuxConfig(
         closureOf<LinuxConfig> {
             pngFile = getIconFile("RedisFront.png")
@@ -232,6 +239,8 @@ tasks.register<PackageTask>("packageForMac_M1") {
     organizationName = organization
     organizationUrl = supportUrl
 
+    vmArgs = jvm
+
     macConfig(
         closureOf<MacConfig> {
             icnsFile = getIconFile("RedisFront.icns")
@@ -248,6 +257,8 @@ tasks.register<PackageTask>("packageForMac") {
 
     organizationName = organization
     organizationUrl = supportUrl
+
+    vmArgs = jvm
 
     macConfig(
         closureOf<MacConfig> {

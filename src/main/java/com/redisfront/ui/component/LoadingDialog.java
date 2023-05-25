@@ -22,7 +22,7 @@ public class LoadingDialog extends JDialog {
         setUndecorated(true);
         initComponentUI(message);
         progressBarWorker = new ProgressBarWorker(progressBar, 20);
-        timer = new Timer((20 * 1000), e -> {
+        timer = new Timer((8 * 1000), e -> {
             dispose();
             AlertUtils.showInformationDialog(LocaleUtils.getMessageFromBundle("LoadingDialog.timeout.message"));
         });
