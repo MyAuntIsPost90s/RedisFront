@@ -313,6 +313,14 @@ public class DataViewForm {
     }
 
     private void reloadTableDataActionPerformed(Boolean init) {
+        Runnable reloadAfterInvoke = () -> {
+            refreshBeforeHandler.handle();
+            refreshEnableBtn();
+            loadMoreBtn.requestFocus();
+            tableAddBtn.setEnabled(true);
+            tableRefreshBtn.setEnabled(true);
+            refreshAfterHandler.handle();
+        };
         FutureUtils.runAsync(() -> {
             var key = keyField.getText();
             this.lastKeyName = key;
@@ -356,14 +364,11 @@ public class DataViewForm {
                 default -> loadStringActionPerformed(key);
             }
 
-            SwingUtilities.invokeLater(() -> {
-                refreshBeforeHandler.handle();
-                refreshEnableBtn();
-                loadMoreBtn.requestFocus();
-                tableAddBtn.setEnabled(true);
-                tableRefreshBtn.setEnabled(true);
-                refreshAfterHandler.handle();
-            });
+            SwingUtilities.invokeLater(reloadAfterInvoke);
+        }, throwable -> {
+            loadMoreBtn.setEnabled(true);
+            AlertUtils.showInformationDialog(throwable.getCause().getMessage());
+            reloadAfterInvoke.run();
         });
     }
 
