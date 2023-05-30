@@ -143,6 +143,15 @@ public class OpenConnectDialog extends AbstractDialog<ConnectInfo> {
             }
         });
 
+        //回车打开链接
+        connectTable.registerKeyboardAction(e -> {
+            var row = connectTable.getSelectedRow();
+            if (row < 0) {
+                return;
+            }
+            onOK();
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
         //查询数据连接列表
         var connectInfoList = ConnectService.service.getAllConnectList();
         connectTable.setModel(new ConnectTableModel(connectInfoList));
