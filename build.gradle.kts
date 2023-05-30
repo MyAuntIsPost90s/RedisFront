@@ -43,7 +43,7 @@ val derbyVersion = "10.15.2.0"
 val lettuceVersion = "6.2.0.RELEASE"
 val logbackVersion = "1.4.1"
 
-val jvm = listOf("-Xss256k", "-Xmx96m", "-XX:MaxMetaspaceSize=64m")
+val jvm = listOf("-Xss200k", "-Xmx156m", "-XX:MaxMetaspaceSize=64m")
 
 val fatJar = false
 

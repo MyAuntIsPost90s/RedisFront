@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  * @author Jin
  */
 public class FutureUtils {
-    private static final int MAX_WORKER_THREADS = 10;
+    private static final int MAX_WORKER_THREADS = Runtime.getRuntime().availableProcessors() / 3 + 1;
 
     private static ExecutorService executorService;
 
