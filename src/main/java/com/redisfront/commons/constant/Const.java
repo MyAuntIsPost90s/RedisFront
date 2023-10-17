@@ -31,10 +31,10 @@ public class Const {
     public static final String KEY_APP_DATABASE_INIT = "appDatabaseInit";
 
     public static final String KEY_LANGUAGE = "language";
-    public static final String DATA_PATH = FileUtil.getUserHomePath() + File.separator + "redis-front";
+    public static final String DATA_PATH = FileUtil.getUserHomePath() + File.separator + ".redis-front";
     public static final String CONFIG_DATA_PATH = DATA_PATH + File.separator + "config";
 
-    public static final String LOG_FILE_PATH = Const.DATA_PATH + File.separator + "logs" + File.separator + "redis-front.log";
+    public static final String LOG_FILE_PATH = Const.DATA_PATH + File.separator + "logs" + File.separator + ".redis-front.log";
 
     public static final String DERBY_LOG_FILE = Const.DATA_PATH + File.separator + "derby" + File.separator + "derby.log";
     public static final String CURRENT_DIR_DERBY_LOG_FILE = "." + File.separator + "derby" + File.separator + "derby.log";
